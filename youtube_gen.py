@@ -2,7 +2,7 @@ import openai
 import tempfile
 import numpy as np
 import pandas as pd
-from pytube import YouTube, Search
+from pytube import YouTube
 import os
 import yt_dlp
 from dotenv import load_dotenv
@@ -45,12 +45,15 @@ def video_to_audio(video_URL):
 
 
     # Convert video to Audio
-    audio = video.streams.filter(only_audio=True).first()
+    #  streams = youtube_video.streams.get_audio_only().download(filename=audio_file_path)
+    temp_path = "audio.mp4"
+    audio = video.streams.get_audio_only()
+    
+    # audio.download(filename=temp_path)
 
-    temp_dir = tempfile.mkdtemp()
-    variable = np.random.randint(1111, 1111111)
-    file_name = f'recording{variable}.mp3'
-    temp_path = os.path.join(temp_dir, file_name)
+    # temp_dir = tempfile.mkdtemp()
+    # variable = np.random.randint(1111, 1111111)
+    # file_name = f'recording{variable}.mp3'
 
     # Save to destination
     output = audio.download(output_path=temp_path)
