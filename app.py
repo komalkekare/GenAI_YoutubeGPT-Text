@@ -216,7 +216,7 @@ def main():
 
 # Call the function to convert the video to audio
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Transcription", "Summary", "Embedding", "Chat with the Video", "Speaker Identification"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Transcription", "Summary", "Embedding", "Chat with the Video"])
     with tab1: 
         st.header("Transcription:")
         if not os.path.exists(audio_file_path):
