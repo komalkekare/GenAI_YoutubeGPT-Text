@@ -24,7 +24,7 @@ import tempfile
 # from sumy.parsers.plaintext import PlaintextParser
 # from sumy.nlp.tokenizers import Tokenizer
 # from sumy.summarizers.lex_rank import LexRankSummarizer
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "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"
 user_secret = openai.api_key
 data_transcription = []
 data = []

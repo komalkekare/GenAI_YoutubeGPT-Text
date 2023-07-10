@@ -8,7 +8,7 @@ import yt_dlp
 from dotenv import load_dotenv
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "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"
 
 video_dict = {
     "url": [],
