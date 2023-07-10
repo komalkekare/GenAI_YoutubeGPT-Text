@@ -7,7 +7,7 @@ from langchain.text_splitter import CharacterTextSplitter
 # from langchain.chat_models import ChatOpenAI
 # from langchain.memory import ConversationBufferMemory
 # from langchain.chains import ConversationalRetrievalChain
-# from htmlTemplates import css, bot_template, user_template, text_template
+from htmlTemplates import css, bot_template, user_template, text_template
 # from langchain.llms import HuggingFaceHub
 import youtube_gen
 import pandas as pd
