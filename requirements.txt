@@ -6,7 +6,8 @@ openai==0.27.6
 faiss-cpu==1.7.4
 altair==4.0
 streamlit_chat
-numpy
+numpy==1.21.4
+numba==0.53.0
 pytube
 yt_dlp
 matplotlib
