@@ -427,7 +427,7 @@ def main():
             #     DiarizeSpeaker.append(meta)
             # pd.DataFrame(DiarizeSpeaker).to_csv('DiarizeSpeaker.csv') 
 
-        st.divider()
+        st.markdown("---------------")
 
         st.subheader("Add your Local Files")
         uploaded_file = st.file_uploader("Upload a video file", type=["mp4", "avi"])
