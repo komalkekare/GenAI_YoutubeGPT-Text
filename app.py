@@ -9,7 +9,7 @@ import whisper
 from pyannote.audio import Pipeline
 import sys
 import time
-from pyAudioAnalysis import audioSegmentation as aS
+# from pyAudioAnalysis import audioSegmentation as aS
 # from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 # from langchain.vectorstores import FAISS
 # from langchain.chat_models import ChatOpenAI
@@ -30,18 +30,18 @@ import imageio
 import imageio.plugins.ffmpeg
 import tempfile
 from io import BufferedReader
-import datetime
-import subprocess
-import torch
-import pyannote.audio
-from pyannote.audio.pipelines.speaker_verification import PretrainedSpeakerEmbedding
+# import datetime
+# import subprocess
+# import torch
+# import pyannote.audio
+# from pyannote.audio.pipelines.speaker_verification import PretrainedSpeakerEmbedding
 # embedding_model = PretrainedSpeakerEmbedding("speechbrain/spkrec-ecapa-voxceleb",device=torch.device("cpu"))
-from pyannote.audio import Audio
-from pyannote.core import Segment
-import wave
-import contextlib
+# from pyannote.audio import Audio
+# from pyannote.core import Segment
+# import wave
+# import contextlib
 
-from sklearn.cluster import AgglomerativeClustering
+# from sklearn.cluster import AgglomerativeClustering
 import numpy as np
 # from sumy.parsers.plaintext import PlaintextParser
 # from sumy.nlp.tokenizers import Tokenizer
