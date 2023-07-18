@@ -137,7 +137,10 @@ def main():
         if st.button("Start Analysis"):
             # if os.path.exists("word_embeddings.csv"):
             #     os.remove("word_embeddings.csv")
-            os.remove("audio.mp3")
+            if os.path.exists("audio.mp3"):
+                os.remove("audio.mp3")
+            if os.path.exists("audio.wav"):
+                os.remove("audio.wav")
 
             with st.spinner("Please Wait while process..."):
                 url_raw_text, audio_file_path = youtube_gen.get_url_text(url_link) 
