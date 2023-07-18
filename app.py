@@ -2,8 +2,8 @@ import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from whisperx import load_align_model, align
-from whisperx.diarize import DiarizationPipeline, assign_word_speakers
+# from whisperx import load_align_model, align
+# from whisperx.diarize import DiarizationPipeline, assign_word_speakers
 import whisper
 # import whisperx
 from pyannote.audio import Pipeline
