@@ -5,7 +5,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from whisperx import load_align_model, align
 from whisperx.diarize import DiarizationPipeline, assign_word_speakers
 import whisper
-import whisperx
+# import whisperx
 from pyannote.audio import Pipeline
 import sys
 import time
@@ -740,60 +740,60 @@ def main():
         #     df = pd.read_csv('timestamptranscription.csv')
         #     st.write(df)
     
-        num_speakers = 2 #@param {type:"integer"}   
-        language = 'English' #@param ['any', 'English']
-        model_size = 'large' #@param ['tiny', 'base', 'small', 'medium', 'large']
+        # num_speakers = 2 #@param {type:"integer"}   
+        # language = 'English' #@param ['any', 'English']
+        # model_size = 'large' #@param ['tiny', 'base', 'small', 'medium', 'large']
 
-        model_name = model_size
-        if language == 'English' and model_size != 'large':
-            model_name += '.en'
+        # model_name = model_size
+        # if language == 'English' and model_size != 'large':
+        #     model_name += '.en'
 
-        path = "audio.mp3"
-        if path[-3:] != 'wav':
-            subprocess.call(['ffmpeg', '-i', path, 'audio.wav', '-y'])
-            path = 'audio.wav'
+        # path = "audio.mp3"
+        # if path[-3:] != 'wav':
+        #     subprocess.call(['ffmpeg', '-i', path, 'audio.wav', '-y'])
+        #     path = 'audio.wav'
 
-        model = whisper.load_model(model_size)
+        # model = whisper.load_model(model_size)
 
-        result = model.transcribe(path)
-        segments = result["segments"]
+        # result = model.transcribe(path)
+        # segments = result["segments"]
 
-        with contextlib.closing(wave.open(path,'r')) as f:
-            frames = f.getnframes()
-            rate = f.getframerate()
-            duration = frames / float(rate)
+        # with contextlib.closing(wave.open(path,'r')) as f:
+        #     frames = f.getnframes()
+        #     rate = f.getframerate()
+        #     duration = frames / float(rate)
 
-        audio = Audio()
+        # audio = Audio()
 
-        def segment_embedding(segment):
-            start = segment["start"]
-            # Whisper overshoots the end timestamp in the last segment
-            end = min(duration, segment["end"])
-            clip = Segment(start, end)
-            waveform, sample_rate = audio.crop(path, clip)
-            return embedding_model(waveform[None])
+        # def segment_embedding(segment):
+        #     start = segment["start"]
+        #     # Whisper overshoots the end timestamp in the last segment
+        #     end = min(duration, segment["end"])
+        #     clip = Segment(start, end)
+        #     waveform, sample_rate = audio.crop(path, clip)
+        #     return embedding_model(waveform[None])
         
-        embeddings = np.zeros(shape=(len(segments), 192))
-        for i, segment in enumerate(segments):
-            embeddings[i] = segment_embedding(segment)
+        # embeddings = np.zeros(shape=(len(segments), 192))
+        # for i, segment in enumerate(segments):
+        #     embeddings[i] = segment_embedding(segment)
 
-        embeddings = np.nan_to_num(embeddings)
+        # embeddings = np.nan_to_num(embeddings)
 
-        clustering = AgglomerativeClustering(num_speakers).fit(embeddings)
-        labels = clustering.labels_
-        for i in range(len(segments)):
-            segments[i]["speaker"] = 'SPEAKER ' + str(labels[i] + 1)
+        # clustering = AgglomerativeClustering(num_speakers).fit(embeddings)
+        # labels = clustering.labels_
+        # for i in range(len(segments)):
+        #     segments[i]["speaker"] = 'SPEAKER ' + str(labels[i] + 1)
 
-        def time(secs):
-            return datetime.timedelta(seconds=round(secs))
+        # def time(secs):
+        #     return datetime.timedelta(seconds=round(secs))
 
-        f = open("transcript.txt", "w")
+        # f = open("transcript.txt", "w")
 
-        for (i, segment) in enumerate(segments):
-            if i == 0 or segments[i - 1]["speaker"] != segment["speaker"]:
-                f.write("\n" + segment["speaker"] + ' ' + str(time(segment["start"])) + '\n')
-            f.write(segment["text"][1:] + ' ')
-        f.close()
+        # for (i, segment) in enumerate(segments):
+        #     if i == 0 or segments[i - 1]["speaker"] != segment["speaker"]:
+        #         f.write("\n" + segment["speaker"] + ' ' + str(time(segment["start"])) + '\n')
+        #     f.write(segment["text"][1:] + ' ')
+        # f.close()
 
                     
       
