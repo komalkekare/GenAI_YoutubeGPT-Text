@@ -24,3 +24,10 @@ sentence-transformers==2.2.2
 # torch==1.11.0
 # transformers==4.11.3
 # instructor
+
+# pyAudioAnalysis
+# hhmlearn
+# eyd3
+# imblearn
+
+pip install -q git+https://github.com/pyannote/pyannote-audio

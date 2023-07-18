@@ -16,23 +16,22 @@ video_dict = {
     "content": []
 }
 
-def download(video_id: str) -> str:
-    video_url = f'https://www.youtube.com/watch?v={video_id}'
-    ydl_opts = {
-        'format': 'm4a/bestaudio/best',
-        'paths': {'home': 'audio/'},
-        'outtmpl': {'default': '%(id)s.%(ext)s'},
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'm4a',
-        }]
-    }
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        error_code = ydl.download([video_url])
-        if error_code != 0:
-            raise Exception('Failed to download video')
+# def download(video_id: str) -> str:
+#     video_url = f'https://www.youtube.com/watch?v={video_id}'
+#     ydl_opts = {
+#         'format': 'bestaudio/best',
+#         'postprocessors': [{
+#             'key': 'FFmpegExtractAudio',
+#             'preferredcodec': 'mp3',
+#             'preferredquality': '192',
+#         }],
+#     }
+#     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+#         error_code = ydl.download([video_url])
+#         if error_code != 0:
+#             raise Exception('Failed to download video')
 
-    return f'audio/{video_id}.m4a'
+    # return f'{video_id}.mp3'
 
 def video_to_audio(video_URL):
     # Get the video
@@ -46,7 +45,7 @@ def video_to_audio(video_URL):
 
     # Convert video to Audio
     #  streams = youtube_video.streams.get_audio_only().download(filename=audio_file_path)
-    temp_path = "audio.mp4"
+    temp_path = "audio"
     audio = video.streams.get_audio_only()
     
     # audio.download(filename=temp_path)
@@ -56,17 +55,21 @@ def video_to_audio(video_URL):
     # file_name = f'recording{variable}.mp3'
 
     # Save to destination
-    output = audio.download(output_path=temp_path)
+    output_audio = audio.download(output_path=temp_path)
 
-    audio_file = open(output, "rb")
+    # base, ext = os.path.splitext(output_audio)
+    new_file = "audio" + '.mp3'
+    os.rename(output_audio, new_file)
+
+    audio_file = open(new_file, "rb")
     textt = openai.Audio.translate("whisper-1", audio_file)["text"]
 
-    return textt
+    return textt, new_file
 
 
 
 def get_url_text(url_link):
-    transcription = video_to_audio(url_link)
+    transcription, audio_file = video_to_audio(url_link)
     video_dict["content"].append(transcription)
-    return video_dict["content"]
+    return video_dict["content"], audio_file
 
