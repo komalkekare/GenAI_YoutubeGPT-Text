@@ -30,4 +30,4 @@ sentence-transformers==2.2.2
 # eyd3
 # imblearn
 
-pip install -q git+https://github.com/pyannote/pyannote-audio
+git+https://github.com/pyannote/pyannote-audio
